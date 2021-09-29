@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: podtest2
+  labels: 
+      app: front
+      env: dev
+spec:
+  template:
+    spec:
+      containers:
+      - name: cont2
+        image: nginx:alpine
+        command: ['sh', '-c', 'echo "Hello, Kubernetes!" && sleep 3600']
+      restartPolicy: OnFailure
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: podtest3
+  labels: 
+      app: backend
+      env: dev
+spec:
+  template:
+    spec:
+      containers:
+      - name: cont3
+        image: nginx:alpine
+        command: ['sh', '-c', 'echo "Hello, Kubernetes!" && sleep 3600']
+      restartPolicy: OnFailure
+ 

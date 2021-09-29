@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-rs
+spec:
+  selector:
+    matchLabels:
+      app: nginx-app
+  replicas: 3
+  template:
+    metadata:
+     name: nginx-pod
+     labels:
+       app: nginx-app
+       env: frontend
+    spec:
+     containers:
+     - name: nginx-container
+       image: nginx:alpine
+
+
+---
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-rs2
+spec:
+  selector:
+    matchLabels:
+      app: nginx-app2
+  replicas: 3
+  template:
+    metadata:
+     name: nginx-pod
+     labels:
+       app: nginx-app2
+       env: backend
+    spec:
+     containers:
+     - name: nginx-container2
+       image: nginx:alpine
